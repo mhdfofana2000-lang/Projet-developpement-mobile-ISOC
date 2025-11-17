@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/ic_sort"
+        android:title="Filtrer"
+        app:showAsAction="ifRoom" />
+        
+    <item
+        android:id="@+id/action_search"
+        android:icon="@android:drawable/ic_menu_search"
+        android:title="Rechercher"
+        app:showAsAction="ifRoom" />
+        
+    <item
+        android:id="@+id/action_stats"
+        android:icon="@drawable/ic_chart"
+        android:title="Statistiques"
+        app:showAsAction="never" />
+        
+    <item
+        android:id="@+id/action_settings"
+        android:title="Paramètres"
+        app:showAsAction="never" />
+        
+</menu>
