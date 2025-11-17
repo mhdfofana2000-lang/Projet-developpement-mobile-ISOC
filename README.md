@@ -1,128 +1,145 @@
- Gestionnaire de flux de tâches
 
-Application de gestion et de suivi des tâches par département – ​​avec rôles Chef / Direction
 
-📌 Présentation du projet
+# 📌 TaskFlow Manager
 
-TaskFlow Manager est une application mobile développée en Flutter, destinée aux organisations souhaitant améliorer la gestion interne des tâches, la coordination entre départements et le suivi global des dossiers. Elle permet à chaque chef de département de gérer ses activités quotidiennes, tandis que la Direction Technique dispose d'une vue consolidée de l'ensemble des services.
+### **Application mobile de gestion et suivi des tâches par département**
 
-L'application utilise Firebase (Realtime Database + Authentication) pour synchroniser les données entre plusieurs utilisateurs et appareils en temps réel.
+---
 
-🎯 Objectifs
+## 📝 Présentation du projet
 
-Digitaliser la gestion des tâches au sein d'une organisation.
-Faciliter la coordination entre les départements.
-Offrir une vue globale à la Direction sur l'état d'avancement général.
-Permettre la consultation et la mise à jour des tâches depuis n'importe quel téléphone connecté.
-Remplacer les échanges WhatsApp, Excel dispersés et le manque de suivi structuré.
-🛠️ Fonctionnalités principales
+**TaskFlow Manager** est une application mobile développée en **Flutter**, destinée aux organisations souhaitant digitaliser la gestion interne des tâches, améliorer la coordination entre départements et renforcer le suivi global des missions.
 
-✔️ **Authentification (Firebase Auth)
+Elle intègre **Firebase (Authentication & Realtime Database)** pour assurer :
 
-Connexion par email & mot de passe
+* la synchronisation en temps réel ;
+* la gestion multi-utilisateurs ;
+* un stockage structuré et sécurisé.
 
-Gestion des rôles :
+Chaque chef de département gère les tâches de son service, tandis que la **Direction Technique** bénéficie d’une vue globale sur l'ensemble des départements.
 
-Chef de département
-Technique de direction (Admin)
-✔️ Gestion des Départements
+---
 
-Les départements sont définis par l'organisation, par exemple :
+## 🎯 Objectifs
 
-Études
-Technique
-Financier
-RH
-Suivi-Évaluation
-Chaque chef ne voit que son propre département .
+* Digitaliser et structurer la gestion interne des tâches.
+* Améliorer la fluidité et la coordination inter-départements.
+* Remplacer les échanges WhatsApp non structurés & les fichiers Excel dispersés.
+* Offrir une vue d’ensemble claire pour la Direction Technique.
+* Permettre un suivi en temps réel, accessible depuis n’importe quel téléphone connecté.
 
-✔️ Gestion des Tâches
+---
 
-Ajouter une tâche
+## 🛠️ Fonctionnalités principales
 
-Modifier / Supprimer
+### ✔️ Authentification (Firebase Auth)
 
-Définir :
+* Connexion par **email / mot de passe**.
+* Gestion des rôles :
 
-Titre
-Description
-Priorité
-Statut (En cours, Fait, En attente)
-Responsable
-Date limite
-Mise à jour en temps réel via Firebase
+  * **Chef de Département**
+  * **Direction Technique (Admin)**
 
-✔️ Vue Globale pour la Direction Technique
+---
 
-Accessible uniquement aux administrateurs :
+### ✔️ Gestion des Départements
 
-Liste consolidée de tous les départements
+Chaque chef ne voit **que son propre département**.
+Exemples de départements :
 
-Nombre de tâches par département
+* Études
+* Technique
+* Financier
+* RH
+* Suivi–Évaluation
 
-Tâches en retard
+---
 
-Délais Prochaines
+### ✔️ Gestion complète des Tâches
 
-Statistiques générales
+* Création, édition, suppression
+* Informations d’une tâche :
 
-Possibilité de filtre par :
+  * Titre
+  * Description
+  * Priorité
+  * Statut (En cours, Fait, En attente)
+  * Responsable
+  * Département
+  * Date limite
+* Mise à jour en temps réel via Firebase
 
-date
-statut
-département
-✔️ Mode hors-ligne (cache Firebase)**
+---
 
-L'utilisateur peut consulter les données récemment chargées même sans Internet
-Synchronisation automatique lorsque la connexion revient
-✔️ Interface moderne (Flutter Material 3)
+### ✔️ Vue globale pour la Direction Technique (Admin)
 
-Écrans simples et fluides
-Cohérence visuelle
-Icônes, couleurs, transitions
-🧱 Architecture du projet
+👤 Réservé à l’Admin :
 
+* Tâches regroupées par département
+* Statistiques globales
+* Nombre de tâches par cellule
+* Tâches en retard
+* Prochaines échéances
+* Filtres avancés (statut, date, service)
+
+---
+
+### ✔️ Mode Hors-ligne (Cache Firebase)
+
+* Consultation des données déjà chargées sans connexion
+* Synchronisation automatique dès le retour du réseau
+
+---
+
+### ✔️ Interface moderne (Flutter Material 3)
+
+* UI propre et intuitive
+* Composants réutilisables
+* Navigation fluide
+* Thème cohérent
+
+---
+
+## 🧱 Architecture du projet
+
+```
 lib/
-│
 ├── main.dart
-│
 ├── core/
 │   ├── constants/
-│   ├── utils/
 │   └── theme/
-│
+├── utils/
 ├── models/
 │   ├── task_model.dart
 │   └── user_model.dart
-│
 ├── services/
 │   ├── auth_service.dart
 │   ├── task_service.dart
 │   └── department_service.dart
-│
 ├── screens/
 │   ├── auth/
 │   │   ├── login_screen.dart
 │   │   └── register_screen.dart
-│   │
 │   ├── departments/
 │   │   ├── department_list_screen.dart
 │   │   └── department_tasks_screen.dart
-│   │
 │   ├── tasks/
 │   │   ├── task_form_screen.dart
 │   │   └── task_detail_screen.dart
-│   │
 │   └── admin/
 │       ├── overview_screen.dart
 │       └── stats_screen.dart
-│
 └── widgets/
     ├── task_card.dart
     ├── loading.dart
     └── custom_button.dart
-🗄️ Base de données Firebase (Structure)
+```
 
+---
+
+## 🗄️ Structure de la base Firebase (Realtime Database)
+
+```json
 {
   "users": {
     "id123": {
@@ -150,46 +167,84 @@ lib/
     }
   }
 }
-🚀 Installation et lancement
+```
 
-1️⃣ Cloner le projet
+---
 
-git clone https://github.com/username/taskflow_manager.git
-cd taskflow_manager
-2️⃣ Installer les dépendances
+## 🚀 Installation & Lancement
 
+### 1️⃣ Cloner le projet
+
+```bash
+git clone https://github.com/mhdfofana2000-lang/Projet-developpement-mobile-ISOC.git
+cd Projet-developpement-mobile-ISOC
+```
+
+### 2️⃣ Installer les dépendances
+
+```bash
 flutter pub get
-3️⃣ Configurer Firebase
+```
 
-Aller sur https://console.firebase.google.com
+### 3️⃣ Configurer Firebase
 
-Créer un projet
+1. Accéder à : [https://console.firebase.google.com](https://console.firebase.google.com)
+2. Créer un projet Firebase
+3. Activer :
+   ✔ Authentication (email/mot de passe)
+   ✔ Realtime Database
+4. Télécharger **google-services.json**
+5. Le placer dans :
 
-Authentification Activer (courriel/mot de passe)
-
-Base de données en temps réel Activer
-
-Télécharger le fichiergoogle-services.json
-
-Le placer dans :
-
+```
 android/app/
-4️⃣ Lancer l'application
+```
 
+### 4️⃣ Lancer l'application
+
+```bash
 flutter run
-📱 Tests de l'application
+```
 
-Tester sur :
+---
 
-Émulateur Android
+## 📱 Tests sur émulateur / mobile
 
+Lister les appareils :
+
+```bash
 flutter devices
-flutter emulators --launch <nom>
+```
+
+Lancer un émulateur :
+
+```bash
+flutter emulators --launch <nom_avd>
+```
+
+Exécuter l'app :
+
+```bash
 flutter run
-📦 Générer un APK
+```
 
+---
+
+## 📦 Générer un APK (version finale)
+
+```bash
 flutter build apk --release
-APK final dans :
+```
 
+APK disponible dans :
+
+```
 build/app/outputs/flutter-apk/app-release.apk
-📄Permis
+```
+
+---
+
+## 📄 Licence
+
+Ce projet est sous licence libre pour un usage éducatif, académique ou professionnel interne.
+
